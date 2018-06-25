@@ -2,7 +2,7 @@ class Npc < ApplicationRecord
   before_create :set_random_values
 
   def set_random_values
-    self.sex = randomSex
+    self.sex = randomSex if self.sex == ""
     self.level = randomLevel
   end
 
