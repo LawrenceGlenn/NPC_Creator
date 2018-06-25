@@ -2,6 +2,10 @@ class Npc < ApplicationRecord
   belongs_to :race
   before_create :set_random_values
 
+  def nickname
+    %Q("#{self[:nickname]}")
+  end
+
   def set_random_values
     self.sex = randomSex if self.sex == ""
     self.level = randomLevel if self.level == nil
