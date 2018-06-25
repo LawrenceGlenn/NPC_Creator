@@ -1,0 +1,77 @@
+<%= form_for(npc) do |f| %>
+  <% if npc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(npc.errors.count, "error") %> prohibited this npc from being saved:</h2>
+
+      <ul>
+      <% npc.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nickname %>
+    <%= f.text_field :nickname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :surname %>
+    <%= f.text_field :surname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :age %>
+    <%= f.number_field :age %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sex %>
+    <%= f.text_field :sex %>
+  </div>
+
+  <div class="field">
+    <%= f.label :haircolor %>
+    <%= f.text_field :haircolor %>
+  </div>
+
+  <div class="field">
+    <%= f.label :eyecolor %>
+    <%= f.text_field :eyecolor %>
+  </div>
+
+  <div class="field">
+    <%= f.label :skincolor %>
+    <%= f.text_field :skincolor %>
+  </div>
+
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+
+  <div class="field">
+    <%= f.label :level %>
+    <%= f.number_field :level %>
+  </div>
+
+  <div class="field">
+    <%= f.label :height %>
+    <%= f.number_field :height %>
+  </div>
+
+  <div class="field">
+    <%= f.label :weight %>
+    <%= f.number_field :weight %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
