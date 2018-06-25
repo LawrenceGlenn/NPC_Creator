@@ -25,7 +25,7 @@
     <% @npcs.each do |npc| %>
       <tr>
         <td><%= npc.name %></td>
-        <td><%= npc.nickname %></td>
+        <td><%= %Q("#{npc.nickname}") %></td>
         <td><%= npc.surname %></td>
         <td><%= npc.age %></td>
         <td><%= npc.sex %></td>
@@ -34,8 +34,8 @@
         <td><%= npc.skincolor %></td>
         <td><%= npc.notes %></td>
         <td><%= npc.level %></td>
-        <td><%= npc.height %></td>
-        <td><%= npc.weight %></td>
+        <td><%= inchesToFeet(npc.height) %></td>
+        <td><%= "#{npc.weight} lbs." %></td>
         <td><%= link_to 'Show', npc %></td>
         <td><%= link_to 'Edit', edit_npc_path(npc) %></td>
         <td><%= link_to 'Destroy', npc, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -7,7 +7,7 @@
 
 <p>
   <strong>Nickname:</strong>
-  <%= @npc.nickname %>
+  <%= %Q("#{@npc.nickname}") %>
 </p>
 
 <p>
@@ -52,12 +52,12 @@
 
 <p>
   <strong>Height:</strong>
-  <%= @npc.height %>
+  <%= inchesToFeet(@npc.height) %>
 </p>
 
 <p>
   <strong>Weight:</strong>
-  <%= @npc.weight %>
+  <%= "#{@npc.weight} lbs." %>
 </p>
 
 <%= link_to 'Edit', edit_npc_path(@npc) %> |
