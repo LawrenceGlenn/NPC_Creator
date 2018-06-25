@@ -3,7 +3,7 @@ class Npc < ApplicationRecord
 
   def set_random_values
     self.sex = randomSex
-    self.level = randomLevel if self.level == nil
+    self.level = randomLevel
   end
 
   def randomSex
