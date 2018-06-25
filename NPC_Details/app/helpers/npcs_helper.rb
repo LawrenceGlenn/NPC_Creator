@@ -22,4 +22,10 @@ module NpcsHelper
       target -= weight
     end
   end
+
+  def randomSex
+    return "Male" if rand(2) == 0
+    "Female"
+  end
+
 end
