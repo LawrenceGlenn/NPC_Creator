@@ -4,8 +4,8 @@ end
 
 class Dice
 
-  def roll(num, die)
-    sum = num.times { rand(die)+1 }
+  def self.roll(num, die)
+    (1..num).inject(0) { |sum| sum + rand(die)+1}
   end
 
 end
