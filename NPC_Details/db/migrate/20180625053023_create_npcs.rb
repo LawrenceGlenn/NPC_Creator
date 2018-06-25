@@ -16,5 +16,7 @@ class CreateNpcs < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :npcs, :race_id
+    
   end
 end

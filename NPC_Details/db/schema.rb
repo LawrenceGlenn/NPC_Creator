@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180625053023) do
+ActiveRecord::Schema.define(version: 20180625184839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20180625053023) do
     t.integer  "level"
     t.integer  "height"
     t.integer  "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.integer  "heightNum"
+    t.integer  "heightDie"
+    t.integer  "heightBase"
+    t.integer  "weightBase"
+    t.integer  "weightMod"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

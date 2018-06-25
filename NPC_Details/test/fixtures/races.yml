@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  heightNum: 1
+  heightDie: 1
+  heightBase: 1
+  weightBase: 1
+  weightMod: 1
+
+two:
+  heightNum: 1
+  heightDie: 1
+  heightBase: 1
+  weightBase: 1
+  weightMod: 1

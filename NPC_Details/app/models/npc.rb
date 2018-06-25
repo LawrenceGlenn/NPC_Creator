@@ -1,4 +1,5 @@
 class Npc < ApplicationRecord
+  belongs_to :race
   before_create :set_random_values
 
   def set_random_values
