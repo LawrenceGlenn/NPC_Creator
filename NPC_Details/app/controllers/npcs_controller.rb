@@ -4,7 +4,7 @@ class NpcsController < ApplicationController
   # GET /npcs
   # GET /npcs.json
   def index
-    @npcs = Npc.all
+    @npcs = Npc.includes(:race).all
   end
 
   # GET /npcs/1
@@ -24,7 +24,7 @@ class NpcsController < ApplicationController
   # POST /npcs
   # POST /npcs.json
   def create
-    @npc = Npc.new(npc_params)
+    @npc = Race.find(params[:npc][:race_id]).npcs.create(npc_params)
 
     respond_to do |format|
       if @npc.save
