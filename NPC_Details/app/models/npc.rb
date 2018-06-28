@@ -1,5 +1,6 @@
 class Npc < ApplicationRecord
   belongs_to :race
+  serialize :eyeColor
   before_create :set_random_values
 
   @tempMod = 0

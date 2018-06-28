@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180628205448) do
+ActiveRecord::Schema.define(version: 20180628211743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180628205448) do
     t.integer  "oldAge"
     t.integer  "venerableAge"
     t.integer  "maxAge"
+    t.text     "eyeColor"
   end
 
   add_foreign_key "npcs", "races"
