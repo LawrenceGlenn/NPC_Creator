@@ -13,11 +13,27 @@ class Npc < ApplicationRecord
     self.level = randomLevel if self.level == nil
     self.height = randomHeight if self.height == nil
     self.weight = randomWeight if self.weight == nil
+    self.age = randomAge if self.age == nil
   end
 
   def randomSex
     return "Male" if rand(2) == 0
     "Female"
+  end
+
+  def randomAge
+    ageCatigory = {ven: 17.6, old: 21.6, mid: 26.9, adult: 33.9}
+    selected = choose_weighted(ageCatigory)
+    case selected
+    when :adult
+      return rand(self.race.middleAge-self.race.adultAge)+self.race.adultAge
+    when :mid
+      return rand(self.race.oldAge-self.race.middleAge)+self.race.middleAge
+    when :old
+      return rand(self.race.venerableAge-self.race.oldAge)+self.race.oldAge
+    when :ven
+      return rand(self.race.maxAge-self.race.venerableAge)+self.race.venerableAge
+    end
   end
 
   def randomLevel
