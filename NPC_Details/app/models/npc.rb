@@ -3,9 +3,6 @@ class Npc < ApplicationRecord
   before_create :set_random_values
 
   @tempMod = 0
-  def nickname
-    %Q("#{self[:nickname]}")
-  end
 
   def set_random_values
     @tempMod = Dice.roll(self.race.modNum, self.race.modDie)

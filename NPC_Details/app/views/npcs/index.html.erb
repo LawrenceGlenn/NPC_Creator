@@ -25,7 +25,7 @@
     <% @npcs.each do |npc| %>
       <tr>
         <td><%= npc.name %></td>
-        <td><%= npc.nickname  %></td>
+        <td><%= %Q("#{npc.nickname}") if npc.nickname.size >0  %></td>
         <td><%= npc.surname %></td>
         <td><%= npc.age %></td>
         <td><%= npc.sex %></td>

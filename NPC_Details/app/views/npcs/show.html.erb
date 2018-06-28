@@ -7,7 +7,7 @@
 
 <p>
   <strong>Nickname:</strong>
-  <%= @npc.nickname%>
+  <%= %Q("#{@npc.nickname}") if @npc.nickname.size >0 %>
 </p>
 
 <p>
