@@ -22,7 +22,7 @@ class Npc < ApplicationRecord
   end
 
   def randomAge
-    ageCatigory = {ven: 17.6, old: 21.6, mid: 26.9, adult: 33.9}
+    ageCatigory = {ven: 176, old: 216, mid: 269, adult: 339}
     selected = choose_weighted(ageCatigory)
     case selected
     when :adult
