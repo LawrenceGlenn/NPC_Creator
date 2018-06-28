@@ -12,6 +12,7 @@ class Npc < ApplicationRecord
     self.sex = randomSex if self.sex == ""
     self.level = randomLevel if self.level == nil
     self.height = randomHeight if self.height == nil
+    self.weight = randomWeight if self.weight == nil
   end
 
   def randomSex
@@ -31,6 +32,10 @@ class Npc < ApplicationRecord
 
   def randomHeight
     self.sex == "Male"? self.race.maleBaseHeight + @tempMod : self.race.femaleBaseHeight + @tempMod
+  end
+
+  def randomWeight
+    self.sex == "Male"? self.race.maleBaseWeight + (@tempMod*self.race.weightMod) : self.race.femaleBaseWeight + (@tempMod*self.race.weightMod)
   end
 
   def choose_weighted(weighted)
