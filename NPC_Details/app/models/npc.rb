@@ -2,13 +2,16 @@ class Npc < ApplicationRecord
   belongs_to :race
   before_create :set_random_values
 
+  @tempMod = 0
   def nickname
     %Q("#{self[:nickname]}")
   end
 
   def set_random_values
+    @tempMod = Dice.roll(self.race.modNum, self.race.modDie)
     self.sex = randomSex if self.sex == ""
     self.level = randomLevel if self.level == nil
+    self.height = randomHeight if self.height == nil
   end
 
   def randomSex
@@ -24,6 +27,10 @@ class Npc < ApplicationRecord
       val = val*2
     end
     choose_weighted(levels)
+  end
+
+  def randomHeight
+    self.sex == "Male"? self.race.maleBaseHeight + @tempMod : self.race.femaleBaseHeight + @tempMod
   end
 
   def choose_weighted(weighted)
