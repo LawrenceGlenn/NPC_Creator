@@ -1,4 +1,4 @@
 class Race < ApplicationRecord
   has_many :npcs
-  serialize :eyeColor
+  serialize :eyeColor, Hash
 end

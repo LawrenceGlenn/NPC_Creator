@@ -43,7 +43,7 @@
 
   <div class="field">
     <%= f.label :eyecolor %>
-    <%= f.text_field :eyecolor %>
+    <%= collection_select(:npc, :eyecolor, Race.find(1).eyeColor, :itself, :first) %>
   </div>
 
   <div class="field">
@@ -75,7 +75,7 @@
     <%= f.label :race_id %>
     <%= collection_select(:npc, :race_id, Race.all, :id, :name) %>
   </div>
-  
+
   <div class="actions">
     <%= f.submit %>
   </div>

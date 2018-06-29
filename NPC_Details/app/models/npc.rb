@@ -1,6 +1,5 @@
 class Npc < ApplicationRecord
   belongs_to :race
-  serialize :eyeColor
   before_create :set_random_values
 
   @tempMod = 0
@@ -12,8 +11,13 @@ class Npc < ApplicationRecord
     self.height = randomHeight if self.height == nil
     self.weight = randomWeight if self.weight == nil
     self.age = randomAge if self.age == nil
+    #self.eyecolor = randomEyecolor if self.eyecolor == ""
   end
 
+  def randomEyecolor
+    sel = self.race.eyeColor.each_with_object ({}) {|key, h| h[key] = self.race.eyeColor[key][:chance]}
+    choose_weighted(sel)
+  end
   def randomSex
     return "Male" if rand(2) == 0
     "Female"
