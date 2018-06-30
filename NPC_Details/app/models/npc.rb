@@ -11,11 +11,11 @@ class Npc < ApplicationRecord
     self.height = randomHeight if self.height == nil
     self.weight = randomWeight if self.weight == nil
     self.age = randomAge if self.age == nil
-    #self.eyecolor = randomEyecolor if self.eyecolor == ""
+    self.eyecolor = randomEyecolor if self.eyecolor == nil
   end
 
   def randomEyecolor
-    sel = self.race.eyeColor.each_with_object ({}) {|key, h| h[key] = self.race.eyeColor[key][:chance]}
+    sel = self.race.eyeColor.each_with_object ({}) {|item, h| h[item[0]] = item[1][:chance]}
     choose_weighted(sel)
   end
   def randomSex
