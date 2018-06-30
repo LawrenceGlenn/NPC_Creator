@@ -4,7 +4,7 @@ class NpcsController < ApplicationController
   # GET /npcs
   # GET /npcs.json
   def index
-    @npcs = Npc.includes(:race).all
+    @npcs = Npc.all
   end
 
   # GET /npcs/1
@@ -15,6 +15,18 @@ class NpcsController < ApplicationController
   # GET /npcs/new
   def new
     @npc = Npc.new
+    @eyecolors = []
+    if params[:race_id].present?
+  @npc = Race.find(params[:npc][:race_id]).npcs.create(npc_params)
+end
+if request.xhr?
+  respond_to do |format|
+    format.json {
+      render json: {npcs: @npcs}
+    }
+  end
+end
+
   end
 
   # GET /npcs/1/edit

@@ -43,7 +43,8 @@
 
   <div class="field">
     <%= f.label :eyecolor %>
-    <%= collection_select(:npc, :eyecolor, Race.find(1).eyeColor, :itself, :first) %>
+    <%= select_tag :eyecolor, options_for_select(@eyecolors.collect{|p| [p.name, p.name]}, selected: params[:eyecolor]),
+        prompt: "Random", class: "form-control" %>
   </div>
 
   <div class="field">
@@ -73,7 +74,7 @@
 
   <div class="field">
     <%= f.label :race_id %>
-    <%= collection_select(:npc, :race_id, Race.all, :id, :name) %>
+    <%= f.collection_select(:race_id, Race.all, :id, :name, prompt: "Random") %>
   </div>
 
   <div class="actions">
