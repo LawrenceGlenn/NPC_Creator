@@ -36,6 +36,8 @@ end
   # POST /npcs
   # POST /npcs.json
   def create
+
+    randomRace if params[:npc][:race_id].size == 0
     @npc = Race.find(params[:npc][:race_id]).npcs.create(npc_params)
 
     respond_to do |format|
@@ -82,5 +84,9 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def npc_params
       params.require(:npc).permit(:name, :nickname, :surname, :age, :sex, :haircolor, :eyecolor, :skincolor, :notes, :level, :height, :weight)
+    end
+
+    def randomRace
+      params[:npc][:race_id]=Race.all.pluck(:id).sample
     end
 end
