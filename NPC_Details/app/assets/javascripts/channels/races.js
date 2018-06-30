@@ -1,4 +1,5 @@
-$(function() {
+document.addEventListener("turbolinks:load", function() {
+  $(function() {
 
    if ($("select#npc_race_id").val() == "") {
     $("select#eyecolor").empty();
@@ -30,6 +31,7 @@ $(function() {
        // Fill course select
        $.each(data[0].eyeColor, function(i, j) {
         row = "<option value=\"" + i + "\">" + i + "</option>";
+        console.log(row);
         $(row).appendTo("select#eyecolor");
        });
       }
@@ -38,3 +40,4 @@ $(function() {
    });
 
   });
+});
