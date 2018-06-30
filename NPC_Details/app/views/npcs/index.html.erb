@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Race</th>
       <th>Name</th>
       <th>Nickname</th>
       <th>Surname</th>
@@ -24,6 +25,7 @@
   <tbody>
     <% @npcs.each do |npc| %>
       <tr>
+        <td><%= npc.race.name %></td>
         <td><%= npc.name %></td>
         <td><%= %Q("#{npc.nickname}") if npc.nickname.size >0  %></td>
         <td><%= npc.surname %></td>
