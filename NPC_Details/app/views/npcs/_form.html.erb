@@ -43,7 +43,7 @@
 
   <div class="field">
     <%= f.label :eyecolor %>
-    <%= f.select :eyecolor, options_for_select(@eyecolors.collect{|p| [p.name, p.name]}, selected: params[:eyecolor]),
+    <%= f.select :eyecolor, options_for_select([], selected: params[:eyecolor]),
         prompt: "Random", class: "form-control" %>
   </div>
 
