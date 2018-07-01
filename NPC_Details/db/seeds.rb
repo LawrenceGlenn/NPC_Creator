@@ -8,13 +8,15 @@
 Race.create(name: "Dwarf", modNum: 2, modDie:4, weightMod: 7, maleBaseWeight: 150, 
   femaleBaseWeight: 120, maleBaseHeight: 45, femaleBaseHeight: 43,
   adultAge: 43, middleAge: 125, oldAge: 188, venerableAge: 250, maxAge: 450,
-  eyeColor: {amber: {chance: 9, hue: 35, saturation: 85, lightness: 45}, 
-  black: {chance: 4, hue: 30, saturation: 80, lightness: 15}, 
-  blue: {chance: 1, hue: 212, saturation: 88, lightness: 55}, 
-  brown: {chance: 35, hue: 30, saturation: 80, lightness: 30},
-  gray: {chance: 34, hue: 210, saturation: 30, lightness: 62}, 
-  green: {chance: 1, hue: 115, saturation: 55, lightness: 55}, 
-  hazel: {chance: 16, hue: 43, saturation: 38, lightness: 34} })
+  eyeColor: {
+    amber: {chance: 9, hue: 35, saturation: 85, lightness: 45}, 
+    black: {chance: 4, hue: 30, saturation: 80, lightness: 15}, 
+    blue: {chance: 1, hue: 212, saturation: 88, lightness: 55}, 
+    brown: {chance: 35, hue: 30, saturation: 80, lightness: 30},
+    gray: {chance: 34, hue: 210, saturation: 30, lightness: 62}, 
+    green: {chance: 1, hue: 115, saturation: 55, lightness: 55}, 
+    hazel: {chance: 16, hue: 43, saturation: 38, lightness: 34}
+  })
 
 Race.create(name: "Elf", modNum: 2, modDie:7, weightMod: 3, maleBaseWeight: 100, 
   femaleBaseWeight: 90, maleBaseHeight: 64, femaleBaseHeight: 64,
@@ -97,10 +99,20 @@ Race.create(name: "Halfling", modNum: 2, modDie:4, weightMod: 1, maleBaseWeight:
 Race.create(name: "Human", modNum: 2, modDie:10, weightMod: 5, maleBaseWeight: 120, 
   femaleBaseWeight: 85, maleBaseHeight: 58, femaleBaseHeight: 53,
   adultAge: 16, middleAge: 35, oldAge: 53, venerableAge: 70, maxAge: 110,
-  eyeColor: {amber: {chance: 6, hue: 35, saturation: 85, lightness: 45}, 
-  black: {chance: 3, hue: 30, saturation: 80, lightness: 15}, 
-  blue: {chance: 9, hue: 210, saturation: 85, lightness: 55}, 
-  brown: {chance: 55, hue: 30, saturation: 80, lightness: 30},
-  gray: {chance: 8, hue: 210, saturation: 30, lightness: 62}, 
-  green: {chance: 8, hue: 115, saturation: 55, lightness: 55}, 
-  hazel: {chance: 11, hue: 43, saturation: 38, lightness: 34} })
+  eyeColor: {
+    amber: {chance: 6, hue: 35, saturation: 85, lightness: 45}, 
+    black: {chance: 3, hue: 30, saturation: 80, lightness: 15}, 
+    blue: {chance: 9, hue: 210, saturation: 85, lightness: 55}, 
+    brown: {chance: 55, hue: 30, saturation: 80, lightness: 30},
+    gray: {chance: 8, hue: 210, saturation: 30, lightness: 62}, 
+    green: {chance: 8, hue: 115, saturation: 55, lightness: 55}, 
+    hazel: {chance: 11, hue: 43, saturation: 38, lightness: 34}
+  },
+  skinColor: {
+    pale: {chance: 10, hue: {min: 28, max: 48}, saturation: {min: 13, max: 75}, lightness: {min: 82, max: 85}}, 
+    fair: {chance: 65, hue: {min: 20, max: 36}, saturation: {min: 30, max: 59}, lightness: {min: 87, max: 91}}, 
+    light_brown: {chance: 15, hue: {min: 18, max: 34}, saturation: {min: 36, max: 73}, lightness: {min: 76, max: 91}}, 
+    olive: {chance: 7, hue: {min: 12, max: 28}, saturation: {min: 54, max: 74}, lightness: {min: 56, max: 91}},
+    dark_brown: {chance: 2, hue: {min: 1, max: 18}, saturation: {min: 22, max: 61}, lightness: {min: 25, max: 67}}, 
+    black: {chance: 1, hue: {min: 213, max: 225}, saturation: {min: 13, max: 19}, lightness: {min: 19, max: 25}}
+  })
