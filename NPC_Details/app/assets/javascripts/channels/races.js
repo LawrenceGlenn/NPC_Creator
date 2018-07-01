@@ -5,6 +5,7 @@ document.addEventListener("turbolinks:load", function() {
    
    $("select#npc_race_id").change( function() {
     updateDropdownsFromRace("select#eyecolor","eyeColor");
+    updateDropdownsFromRace("select#skincolor","skinColor");
 
   });
 
@@ -12,8 +13,10 @@ document.addEventListener("turbolinks:load", function() {
    function resetDropdownFromRace(){
     if ($("select#npc_race_id").val() == "") {
       $("select#eyecolor").empty();
+      $("select#skincolor").empty();
       var row = "<option value=\"" + "" + "\">" + "Random" + "</option>";
       $(row).appendTo("select#eyecolor");
+      $(row).appendTo("select#skincolor");
    }}
 
 
