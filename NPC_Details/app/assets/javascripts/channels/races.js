@@ -4,8 +4,8 @@ document.addEventListener("turbolinks:load", function() {
     resetDropdownFromRace();
    
    $("select#npc_race_id").change( function() {
-    updateDropdownsFromRace("select#eyecolor","eyeColor");
-    updateDropdownsFromRace("select#skincolor","skinColor");
+    updateDropdownsFromRace("select#npc_eyecolor","eyeColor");
+    updateDropdownsFromRace("select#npc_skincolor","skinColor");
 
   });
 

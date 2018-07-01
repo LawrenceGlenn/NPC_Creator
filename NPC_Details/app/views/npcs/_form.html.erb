@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= f.label :sex %>
-    <%= select(:npc, :sex, [['Random', ''], ['Male', 'Male'], ['Female', 'Female']]) %>
+    <%= f.select :sex, options_for_select([['Random', ''], ['Male', 'Male'], ['Female', 'Female']]) %>
   </div>
 
   <div class="field">
@@ -43,13 +43,13 @@
 
   <div class="field">
     <%= f.label :eyecolor %>
-    <%= select_tag :eyecolor, options_for_select(@eyecolors.collect{|p| [p.name, p.name]}, selected: params[:eyecolor]),
+    <%= f.select :eyecolor, options_for_select(@eyecolors.collect{|p| [p.name, p.name]}, selected: params[:eyecolor]),
         prompt: "Random", class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :skincolor %>
-    <%= select_tag :skincolor, options_for_select([], selected: params[:skincolor]),
+    <%= f.select :skincolor, options_for_select([], selected: params[:skincolor]),
         prompt: "Random", class: "form-control" %>
   </div>
 
