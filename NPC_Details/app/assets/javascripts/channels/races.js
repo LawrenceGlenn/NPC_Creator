@@ -6,6 +6,7 @@ document.addEventListener("turbolinks:load", function() {
    $("select#npc_race_id").change( function() {
     updateDropdownsFromRace("select#npc_eyecolor","eyeColor");
     updateDropdownsFromRace("select#npc_skincolor","skinColor");
+    updateDropdownsFromRace("select#npc_haircolor","hairColor");
 
   });
 

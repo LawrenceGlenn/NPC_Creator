@@ -38,7 +38,8 @@
 
   <div class="field">
     <%= f.label :haircolor %>
-    <%= f.text_field :haircolor %>
+    <%= f.select :haircolor, options_for_select([], selected: params[:haircolor]),
+        prompt: "Random", class: "form-control" %>
   </div>
 
   <div class="field">
