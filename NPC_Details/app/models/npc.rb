@@ -1,3 +1,6 @@
+require 'nameGenerator.rb'
+require 'weightedSelection.rb'
+
 class Npc < ApplicationRecord
   belongs_to :race
   before_create :set_random_values
@@ -13,11 +16,16 @@ class Npc < ApplicationRecord
     self.age = randomAge if self.age == nil
     self.eyecolor = randomColor(self.race.eyeColor) if self.eyecolor == ""
     self.skincolor = randomColor(self.race.skinColor) if self.skincolor == ""
+    self.haircolor = randomColor(self.race.hairColor) if self.haircolor == ""
+    self.name = randomName if self.name ==""
   end
 
+  def randomName
+    self.name = NameGenerator.new.generateName
+  end
   def randomColor(colors)
     sel = colors.each_with_object ({}) {|item, h| h[item[0]] = item[1][:chance]}
-    choose_weighted(sel)
+    WeightedSelection.choose(sel)
   end
 
   def randomSex
@@ -27,7 +35,7 @@ class Npc < ApplicationRecord
 
   def randomAge
     ageCatigory = {ven: 176, old: 216, mid: 269, adult: 339}
-    selected = choose_weighted(ageCatigory)
+    selected = WeightedSelection.choose(ageCatigory)
     case selected
     when :adult
       return rand(self.race.middleAge-self.race.adultAge)+self.race.adultAge
@@ -47,7 +55,7 @@ class Npc < ApplicationRecord
       levels[key] = val
       val = val*2
     end
-    choose_weighted(levels)
+    WeightedSelection.choose(levels)
   end
 
   def randomHeight
@@ -56,15 +64,6 @@ class Npc < ApplicationRecord
 
   def randomWeight
     self.sex == "Male"? self.race.maleBaseWeight + (@tempMod*self.race.weightMod) : self.race.femaleBaseWeight + (@tempMod*self.race.weightMod)
-  end
-
-  def choose_weighted(weighted)
-    sum = weighted.inject(0) { |sum, item_and_weight| sum += item_and_weight[1] }
-    target = rand(sum)
-    weighted.each do |item, weight|
-      return item if target <= weight
-      target -= weight
-    end
   end
 
 end

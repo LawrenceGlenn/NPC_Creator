@@ -151,7 +151,7 @@ Race.create(name: "Goblin", modNum: 2, modDie:4, weightMod: 1, maleBaseWeight: 3
     dark_gray: {chance: 65, hue: {min: 215, max: 245}, saturation: {min: 10, max: 40}, lightness: {min: 20, max: 25}}
   },
   hairColor: {
-    non_applicable: {}
+    non_applicable: {chance: 1, hue: {}, saturation: {}, lightness: {}}
   })
 
 Race.create(name: "Half-Elf", modNum: 2, modDie:8, weightMod: 5, maleBaseWeight: 110, 
