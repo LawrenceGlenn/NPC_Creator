@@ -1,101 +1,505 @@
-- Aegnor
-- Aikanáro
-- Ambaráto
-- Amdír  
-- Amras
-- Telufinwë
-- Umbarto
-- Amrod
-- Ambarussa
-- Pityafinwë
-- Amroth   
-- Angrod
-- Angaráto
-- Annael   
-- Aranwë   
-- Argon
-- Arakáno
-- Arminas  
-- Beleg
-- Cúthalion  
-- Caranthir
-- Carnistir
-- Morifinwë
-- Celeborn
-- Teleporno
-- Celebrimbor  
-- Celegorm
-- Turcafinwë
-- Tyelkormo
-- Círdan   
-- Curufin
-- Atarinkë
-- Curufinwë
-- Daeron   
-- Denethor   
-- Ecthelion
-- Edrahil  
-- Egalmoth   
-- Elemmakil  
-- Elmo   
-- Enel   
-- Enerdhil   
-- Eöl  
-- Erestor  
-- Fëanor
-- Curufinwë
-- Fëanáro
-- Finarfin
-- Arafinwë
-- Ingalaurë
-- Fingolfin
-- Aracáno
-- Ñolofinwë
-- Fingon
-- Findekáno
-- Finrod
-- Findaráto
-- Ingoldo
-- Nóm
-- Finwë
-- Ñoldóran 
-- Galadhon   
-- Galathil   
-- Galdor   
-- Galion   
-- Gelmir   
-- Gelmir   
-- Gildor
-- Inglorion   
-- Gil-galad
-- Artanáro
-- Ereinion
-- Rodnor
-- Glorfindel 
-- Guilin   
-- Gwindor  
-- Haldir   
-- Imin   
-- Ingwë  
-- Ingwion  
-- Legolas  
-- Lenwë  
-- Mablung  
-- Maedhros   
-- Maeglin  
-- Maglor   
-- Mahtan   
-- Olwë   
-- Orodreth   
-- Oropher  
-- Orophin  
-- Pengolodh  
-- Rúmil  
-- Rúmil  
-- Tata   
-- Thingol
-- Elwë
-- Thranduil  
-- Turgon   
-- Voronwë
-- Aranwion
+-
+ - Aegnor
+ - elf
+ - m
+ - tolkien
+-
+ - Aikanáro
+ - elf
+ - m
+ - tolkien
+-
+ - Ambaráto
+ - elf
+ - m
+ - tolkien
+-
+ - Amdír  
+ - elf
+ - m
+ - tolkien
+-
+ - Amras
+ - elf
+ - m
+ - tolkien
+-
+ - Telufinwë
+ - elf
+ - m
+ - tolkien
+-
+ - Umbarto
+ - elf
+ - m
+ - tolkien
+-
+ - Amrod
+ - elf
+ - m
+ - tolkien
+-
+ - Ambarussa
+ - elf
+ - m
+ - tolkien
+-
+ - Pityafinwë
+ - elf
+ - m
+ - tolkien
+-
+ - Amroth   
+ - elf
+ - m
+ - tolkien
+-
+ - Angrod
+ - elf
+ - m
+ - tolkien
+-
+ - Angaráto
+ - elf
+ - m
+ - tolkien
+-
+ - Annael   
+ - elf
+ - m
+ - tolkien
+-
+ - Aranwë   
+ - elf
+ - m
+ - tolkien
+-
+ - Argon
+ - elf
+ - m
+ - tolkien
+-
+ - Arakáno
+ - elf
+ - m
+ - tolkien
+-
+ - Arminas  
+ - elf
+ - m
+ - tolkien
+-
+ - Beleg
+ - elf
+ - m
+ - tolkien
+-
+ - Cúthalion  
+ - elf
+ - m
+ - tolkien
+-
+ - Caranthir
+ - elf
+ - m
+ - tolkien
+-
+ - Carnistir
+ - elf
+ - m
+ - tolkien
+-
+ - Morifinwë
+ - elf
+ - m
+ - tolkien
+-
+ - Celeborn
+ - elf
+ - m
+ - tolkien
+-
+ - Teleporno
+ - elf
+ - m
+ - tolkien
+-
+ - Celebrimbor  
+ - elf
+ - m
+ - tolkien
+-
+ - Celegorm
+ - elf
+ - m
+ - tolkien
+-
+ - Turcafinwë
+ - elf
+ - m
+ - tolkien
+-
+ - Tyelkormo
+ - elf
+ - m
+ - tolkien
+-
+ - Círdan   
+ - elf
+ - m
+ - tolkien
+-
+ - Curufin
+ - elf
+ - m
+ - tolkien
+-
+ - Atarinkë
+ - elf
+ - m
+ - tolkien
+-
+ - Curufinwë
+ - elf
+ - m
+ - tolkien
+-
+ - Daeron   
+ - elf
+ - m
+ - tolkien
+-
+ - Denethor   
+ - elf
+ - m
+ - tolkien
+-
+ - Ecthelion
+ - elf
+ - m
+ - tolkien
+-
+ - Edrahil  
+ - elf
+ - m
+ - tolkien
+-
+ - Egalmoth   
+ - elf
+ - m
+ - tolkien
+-
+ - Elemmakil  
+ - elf
+ - m
+ - tolkien
+-
+ - Elmo   
+ - elf
+ - m
+ - tolkien
+-
+ - Enel   
+ - elf
+ - m
+ - tolkien
+-
+ - Enerdhil   
+ - elf
+ - m
+ - tolkien
+-
+ - Eöl  
+ - elf
+ - m
+ - tolkien
+-
+ - Erestor  
+ - elf
+ - m
+ - tolkien
+-
+ - Fëanor
+ - elf
+ - m
+ - tolkien
+-
+ - Curufinwë
+ - elf
+ - m
+ - tolkien
+-
+ - Fëanáro
+ - elf
+ - m
+ - tolkien
+-
+ - Finarfin
+ - elf
+ - m
+ - tolkien
+-
+ - Arafinwë
+ - elf
+ - m
+ - tolkien
+-
+ - Ingalaurë
+ - elf
+ - m
+ - tolkien
+-
+ - Fingolfin
+ - elf
+ - m
+ - tolkien
+-
+ - Aracáno
+ - elf
+ - m
+ - tolkien
+-
+ - Ñolofinwë
+ - elf
+ - m
+ - tolkien
+-
+ - Fingon
+ - elf
+ - m
+ - tolkien
+-
+ - Findekáno
+ - elf
+ - m
+ - tolkien
+-
+ - Finrod
+ - elf
+ - m
+ - tolkien
+-
+ - Findaráto
+ - elf
+ - m
+ - tolkien
+-
+ - Ingoldo
+ - elf
+ - m
+ - tolkien
+-
+ - Nóm
+ - elf
+ - m
+ - tolkien
+-
+ - Finwë
+ - elf
+ - m
+ - tolkien
+-
+ - Ñoldóran 
+ - elf
+ - m
+ - tolkien
+-
+ - Galadhon   
+ - elf
+ - m
+ - tolkien
+-
+ - Galathil   
+ - elf
+ - m
+ - tolkien
+-
+ - Galdor   
+ - elf
+ - m
+ - tolkien
+-
+ - Galion   
+ - elf
+ - m
+ - tolkien
+-
+ - Gelmir   
+ - elf
+ - m
+ - tolkien
+-
+ - Gelmir   
+ - elf
+ - m
+ - tolkien
+-
+ - Gildor
+ - elf
+ - m
+ - tolkien
+-
+ - Inglorion   
+ - elf
+ - m
+ - tolkien
+-
+ - Gil-galad
+ - elf
+ - m
+ - tolkien
+-
+ - Artanáro
+ - elf
+ - m
+ - tolkien
+-
+ - Ereinion
+ - elf
+ - m
+ - tolkien
+-
+ - Rodnor
+ - elf
+ - m
+ - tolkien
+-
+ - Glorfindel 
+ - elf
+ - m
+ - tolkien
+-
+ - Guilin   
+ - elf
+ - m
+ - tolkien
+-
+ - Gwindor  
+ - elf
+ - m
+ - tolkien
+-
+ - Haldir   
+ - elf
+ - m
+ - tolkien
+-
+ - Imin   
+ - elf
+ - m
+ - tolkien
+-
+ - Ingwë  
+ - elf
+ - m
+ - tolkien
+-
+ - Ingwion  
+ - elf
+ - m
+ - tolkien
+-
+ - Legolas  
+ - elf
+ - m
+ - tolkien
+-
+ - Lenwë  
+ - elf
+ - m
+ - tolkien
+-
+ - Mablung  
+ - elf
+ - m
+ - tolkien
+-
+ - Maedhros   
+ - elf
+ - m
+ - tolkien
+-
+ - Maeglin  
+ - elf
+ - m
+ - tolkien
+-
+ - Maglor   
+ - elf
+ - m
+ - tolkien
+-
+ - Mahtan   
+ - elf
+ - m
+ - tolkien
+-
+ - Olwë   
+ - elf
+ - m
+ - tolkien
+-
+ - Orodreth   
+ - elf
+ - m
+ - tolkien
+-
+ - Oropher  
+ - elf
+ - m
+ - tolkien
+-
+ - Orophin  
+ - elf
+ - m
+ - tolkien
+-
+ - Pengolodh  
+ - elf
+ - m
+ - tolkien
+-
+ - Rúmil  
+ - elf
+ - m
+ - tolkien
+-
+ - Rúmil  
+ - elf
+ - m
+ - tolkien
+-
+ - Tata   
+ - elf
+ - m
+ - tolkien
+-
+ - Thingol
+ - elf
+ - m
+ - tolkien
+-
+ - Elwë
+ - elf
+ - m
+ - tolkien
+-
+ - Thranduil  
+ - elf
+ - m
+ - tolkien
+-
+ - Turgon   
+ - elf
+ - m
+ - tolkien
+-
+ - Voronwë
+ - elf
+ - m
+ - tolkien
+-
+ - Aranwion
+ - elf
+ - m
+ - tolkien
