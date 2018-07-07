@@ -21,7 +21,7 @@ class Npc < ApplicationRecord
   end
 
   def randomName
-    self.name = NameGenerator.new.generateName
+    self.name = NameGenerator.new.generateName(self.race.name, self.sex[0])
   end
   def randomColor(colors)
     sel = colors.each_with_object ({}) {|item, h| h[item[0]] = item[1][:chance]}
@@ -65,5 +65,21 @@ class Npc < ApplicationRecord
   def randomWeight
     self.sex == "Male"? self.race.maleBaseWeight + (@tempMod*self.race.weightMod) : self.race.femaleBaseWeight + (@tempMod*self.race.weightMod)
   end
+
+  def getAgeCatigory
+    case self.age
+    when (0..self.race.adultAge-1)
+      return "child"
+    when (self.race.adultAge..self.race.middleAge-1)
+      return "adult"
+    when (self.race.middleAge..self.race.oldAge-1)
+      return "middle age"
+    when (self.race.oldAge..self.race.venerableAge-1)
+      return "old age"
+    when (self.race.venerableAge..self.race.maxAge-1)
+      return "venerable"
+    end
+  end
+
 
 end

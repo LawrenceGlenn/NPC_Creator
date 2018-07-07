@@ -10,6 +10,7 @@
       <th>Nickname</th>
       <th>Surname</th>
       <th>Age</th>
+      <th>Age Catigory</th>
       <th>Sex</th>
       <th>Haircolor</th>
       <th>Eyecolor</th>
@@ -30,6 +31,7 @@
         <td><%= %Q("#{npc.nickname}") if npc.nickname.size >0  %></td>
         <td><%= npc.surname %></td>
         <td><%= npc.age %></td>
+        <td><%= npc.getAgeCatigory %></td>
         <td><%= npc.sex %></td>
         <td><%= npc.haircolor %></td>
         <td><%= npc.eyecolor %></td>

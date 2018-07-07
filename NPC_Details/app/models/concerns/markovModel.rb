@@ -1,4 +1,3 @@
-  SAMPLE_NAMES = ["$begin$","$begin$","$begin$", "Joni", "Bob", "william", "Will", "Tim", "Anna", "$end$", "$end$", "$end$", "$begin$","$begin$","$begin$", "william", "Aragorn" , "Tirth", "Bob", "william", "Tim", "Joni", "Bob", "$end$", "$end$", "$end$"]
 require "yaml"
 require 'weightedSelection.rb'
 
@@ -18,10 +17,13 @@ class MarkovModel
 
   def generate_random_result(data, order = 1, model = make_model(data,order))
     outputList = []
+    puts "inside gen"
+    puts "model #{model}"
     (1..order).each { outputList << "$begin$"}
-    until outputList.last == "$end$" do
-      puts model
-      outputList << WeightedSelection.choose(model[outputList.last(order)])
+    if model.has_value?("$end$") then
+      until outputList.last == "$end$" do
+        outputList << WeightedSelection.choose(model[outputList.last(order)])
+      end
     end
     outputList
   end
