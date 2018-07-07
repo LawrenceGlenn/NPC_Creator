@@ -17,10 +17,8 @@ class MarkovModel
 
   def generate_random_result(data, order = 1, model = make_model(data,order))
     outputList = []
-    puts "inside gen"
-    puts "model #{model}"
+    unless model.empty? then
     (1..order).each { outputList << "$begin$"}
-    if model.has_value?("$end$") then
       until outputList.last == "$end$" do
         outputList << WeightedSelection.choose(model[outputList.last(order)])
       end
