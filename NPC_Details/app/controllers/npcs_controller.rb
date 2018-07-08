@@ -1,10 +1,10 @@
 class NpcsController < ApplicationController
   before_action :set_npc, only: [:show, :edit, :update, :destroy]
-
+  helper_method :sort_column, :sort_direction
   # GET /npcs
   # GET /npcs.json
   def index
-    @npcs = Npc.order(params[:sort] + ' ' + params[:direction]).all
+    @npcs = Npc.order(sort_column + ' ' + sort_direction).all
   end
 
   # GET /npcs/1
@@ -36,11 +36,10 @@ end
   # POST /npcs
   # POST /npcs.json
   def create
-(1..1000).each{
-    randomRace
+
+    randomRace if params[:npc][:race_id].size == 0
     @npc = Race.find(params[:npc][:race_id]).npcs.create(npc_params)
-@npc.save
-}
+
     respond_to do |format|
       if @npc.save
         format.html { redirect_to @npc, notice: 'Npc was successfully created.' }
@@ -50,7 +49,6 @@ end
         format.json { render json: @npc.errors, status: :unprocessable_entity }
       end
     end
-  
   end
 
   # PATCH/PUT /npcs/1
@@ -90,5 +88,14 @@ end
 
     def randomRace
       params[:npc][:race_id]=Race.all.pluck(:id).sample
+    end
+
+    private
+    def sort_column
+      Npc.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
     end
 end

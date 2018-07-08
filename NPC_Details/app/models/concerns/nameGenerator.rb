@@ -12,7 +12,7 @@
         (1..order).each{output << "$begin$"}
           case race.downcase
             when "human"
-              output.concat(filterNameByCharacter(name[0]))
+              output.concat(filterHumanName(name[0]))
             when "elf"
               output.concat(filterNameByCharacter(name[0]))
             when "half-elf"
@@ -37,7 +37,7 @@
   end
 
   def generateName(race = "any", sex = "any", source = "any")
-    order = 3
+    order = 2
     nam = MarkovModel.new.generate_random_result(dataToList(order, race, sex, source), order)
 
     nam[order..nam.length-2].join("").capitalize
@@ -45,13 +45,19 @@
   end
 
   def filterHumanName(name)
-    vowel = ""
+    firstVowel = false
     output = []
-    (name).chomp.downcase.each_char do |char|
-      vowel = vowel + char
-      if char.match(/[^\x00-\x7F]|[aeiou]/) || (name).chomp.downcase.last.eql?(char) then
-        output << vowel
+    str = ""
+    (name).chomp.downcase.each_char.with_index do |char, index|
+      if char.match(/[^\x00-\x7F]|[aeiou]/) then
+        if firstVowel then
+          output << str
+          str = ""
+        end
+        firstVowel = true
       end
+      str = str + char
+      output << str if (name).chomp.downcase.last.eql?(char)
     end
     output
   end
