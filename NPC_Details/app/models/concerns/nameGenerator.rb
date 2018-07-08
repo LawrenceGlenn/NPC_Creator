@@ -3,42 +3,71 @@
   require 'markovModel.rb'
 
   class NameGenerator
-
+  @@file = YAML.load_file("#{::Rails.root.to_s}/app/models/concerns/names.yml").uniq
 
   def dataToList(order=1, race, sex, source)
     output = []
-    YAML.load_file("#{::Rails.root.to_s}/app/models/concerns/names.yml").uniq.each do |name|
-      if (race.downcase.eql?("any") || name[1].eql?(race.downcase)) && (sex.downcase.eql?("any") || 
-        name[2].eql?(sex.downcase)) && (source.downcase.eql?("any") || name[3].eql?(source.downcase))
+    @@file.each do |name|
+      if check_name_for_race_sex_source(name,race,sex,source) then
         (1..order).each{output << "$begin$"}
-        voul = ""
-        (name[0]).chomp.downcase.each_char do |char|
-          voul = voul + char
-          if char.match(/[^\x00-\x7F]|[aeiou]/) || (name[0]).chomp.downcase.last.eql?(char) then
-            output << voul
-            voul = ""
+          case race.downcase
+            when "human"
+              output.concat(filterNameByCharacter(name[0]))
+            when "elf"
+              output.concat(filterNameByCharacter(name[0]))
+            when "half-elf"
+              output.concat(filterNameByCharacter(name[0]))
+            when "dwarf"
+              output.concat(filterNameByCharacter(name[0]))
+            when "halfling"
+              output.concat(filterNameByCharacter(name[0]))
+            when "gnome"
+              output.concat(filterNameByCharacter(name[0]))
+            when "half-orc"
+              output.concat(filterNameByCharacter(name[0]))
+            when "goblin"
+              output.concat(filterNameByCharacter(name[0]))
+            else
+              output.concat(filterNameByCharacter(name[0]))
           end
-        end
         (1..order).each{output << "$end$"}
       end
     end
     output
   end
 
-  def listToProbability
-    output = {}
-    list = dataToList
-    list.each do |item|
-      output[item] = list.count(item)
+  def generateName(race = "any", sex = "any", source = "any")
+    order = 3
+    nam = MarkovModel.new.generate_random_result(dataToList(order, race, sex, source), order)
+
+    nam[order..nam.length-2].join("").capitalize
+
+  end
+
+  def filterHumanName(name)
+    vowel = ""
+    output = []
+    (name).chomp.downcase.each_char do |char|
+      vowel = vowel + char
+      if char.match(/[^\x00-\x7F]|[aeiou]/) || (name).chomp.downcase.last.eql?(char) then
+        output << vowel
+      end
     end
     output
   end
 
-  def generateName(race = "any", sex = "any", source = "any")
-    order = 2
-    nam = MarkovModel.new.generate_random_result(dataToList(order, race, sex, source), order)
-    nam[order..nam.length-2].join("").capitalize
+  def filterNameByCharacter(name)
+    output = []
+    (name).chomp.downcase.each_char do |char|
+      output << char
+    end
+    output
+  end
 
+  def check_name_for_race_sex_source(arr, race, sex, source)
+    arr[1].eql?(race.downcase) || arr[1].eql?("any") && 
+        (sex.downcase.eql?("any") || arr[2].eql?(sex.downcase)) && 
+        (source.downcase.eql?("any") || arr[3].eql?(source.downcase))
   end
 
 end

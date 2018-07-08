@@ -4,7 +4,7 @@ class NpcsController < ApplicationController
   # GET /npcs
   # GET /npcs.json
   def index
-    @npcs = Npc.all
+    @npcs = Npc.order(params[:sort] + ' ' + params[:direction]).all
   end
 
   # GET /npcs/1
@@ -36,10 +36,11 @@ end
   # POST /npcs
   # POST /npcs.json
   def create
-
-    randomRace if params[:npc][:race_id].size == 0
+(1..1000).each{
+    randomRace
     @npc = Race.find(params[:npc][:race_id]).npcs.create(npc_params)
-
+@npc.save
+}
     respond_to do |format|
       if @npc.save
         format.html { redirect_to @npc, notice: 'Npc was successfully created.' }
@@ -49,6 +50,7 @@ end
         format.json { render json: @npc.errors, status: :unprocessable_entity }
       end
     end
+  
   end
 
   # PATCH/PUT /npcs/1

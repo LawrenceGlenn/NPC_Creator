@@ -34,8 +34,8 @@ class Npc < ApplicationRecord
   end
 
   def randomAge
-    ageCatigory = {ven: 176, old: 216, mid: 269, adult: 339}
-    selected = WeightedSelection.choose(ageCatigory)
+    setAgeCatigory = {ven: 176, old: 216, mid: 269, adult: 339}
+    selected = WeightedSelection.choose(setAgeCatigory)
     case selected
     when :adult
       return rand(self.race.middleAge-self.race.adultAge)+self.race.adultAge
@@ -66,7 +66,7 @@ class Npc < ApplicationRecord
     self.sex == "Male"? self.race.maleBaseWeight + (@tempMod*self.race.weightMod) : self.race.femaleBaseWeight + (@tempMod*self.race.weightMod)
   end
 
-  def getAgeCatigory
+  def ageCatigory
     case self.age
     when (0..self.race.adultAge-1)
       return "child"
