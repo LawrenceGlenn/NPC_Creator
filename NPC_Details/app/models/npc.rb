@@ -6,6 +6,7 @@ class Npc < ApplicationRecord
   before_create :set_random_values
 
   @tempMod = 0
+  @@file = YAML.load_file("#{::Rails.root.to_s}/app/models/concerns/jobs.yml").uniq
 
   def set_random_values
     @tempMod = Dice.roll(self.race.modNum, self.race.modDie)
@@ -20,6 +21,21 @@ class Npc < ApplicationRecord
     self.name = randomName if self.name ==""
     self.alignment = randomAlignment if self.alignment ==""
     self.rpgclass = randomClass if self.rpgclass ==""
+    self.occupation = randomOccupation if self.occupation ==""
+  end
+
+  def randomOccupation
+    jobs = {}
+    @@file.each do |job|
+      baseChance = 1000000/job[1]
+      jobs["head ".concat(job[0])] = baseChance
+      jobs["apprentice ".concat(job[0])] = baseChance*job[2]
+    end
+    jobs[:begger] = 30000
+    jobs["day_laborer"] = 90781
+    jobs[:peddler] = 60000
+    jobs["farmer"] = 500000
+    WeightedSelection.choose(jobs)
   end
 
   def randomAlignment

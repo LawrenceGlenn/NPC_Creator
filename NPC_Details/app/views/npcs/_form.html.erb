@@ -47,6 +47,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :occupation %>
+    <%= f.text_field :occupation %>
+  </div>
+
+  <div class="field">
     <%= f.label :haircolor %>
     <%= f.select :haircolor, options_for_select([], selected: params[:haircolor]),
         prompt: "Random", class: "form-control" %>

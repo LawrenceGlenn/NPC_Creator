@@ -81,7 +81,8 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def npc_params
-      params.require(:npc).permit(:name, :nickname, :surname, :age, :sex, :haircolor, :eyecolor, :skincolor, :notes, :level, :height, :weight, :alignment, :rpgclass)
+      params.require(:npc).permit(:name, :nickname, :surname, :age, :sex, :haircolor, :eyecolor, :skincolor, 
+        :notes, :level, :height, :weight, :alignment, :rpgclass, :occupation)
     end
 
     def randomRace

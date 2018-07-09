@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180709170129) do
+ActiveRecord::Schema.define(version: 20180709201125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180709170129) do
     t.integer  "race_id"
     t.string   "alignment"
     t.string   "rpgclass"
+    t.string   "occupation"
     t.index ["race_id"], name: "index_npcs_on_race_id", using: :btree
   end
 
