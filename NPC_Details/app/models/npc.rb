@@ -19,7 +19,7 @@ class Npc < ApplicationRecord
     self.haircolor = randomColor(self.race.hairColor) if self.haircolor == ""
     self.name = randomName if self.name ==""
     self.alignment = randomAlignment if self.alignment ==""
-    self.characterClass = randomClass if self.characterClass ==""
+    self.rpgclass = randomClass if self.rpgclass ==""
   end
 
   def randomAlignment
