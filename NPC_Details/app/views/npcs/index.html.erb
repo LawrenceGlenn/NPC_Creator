@@ -13,13 +13,14 @@
       <th>ageCatigory</th>
       <th><%= sortable "alignment"%></th>
       <th><%= sortable "sex"%></th>
+      <th><%= sortable "characterClass"%></th>
       <th><%= sortable "haircolor"%></th>
       <th><%= sortable "eyecolor"%></th>
       <th><%= sortable "skincolor"%></th>
-      <th><%= sortable "notes"%></th>
       <th><%= sortable "level"%></th>
       <th><%= sortable "height"%></th>
       <th><%= sortable "weight"%></th>
+      <th><%= sortable "notes"%></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -35,13 +36,14 @@
         <td><%= npc.ageCatigory %></td>
         <td><%= npc.alignment %></td>
         <td><%= npc.sex %></td>
+        <td><%= npc.characterClass %></td>
         <td><%= npc.haircolor %></td>
         <td><%= npc.eyecolor %></td>
         <td><%= npc.skincolor %></td>
-        <td><%= npc.notes %></td>
         <td><%= npc.level %></td>
         <td><%= inchesToFeet(npc.height) %></td>
         <td><%= "#{npc.weight} lbs." %></td>
+        <td><%= npc.notes %></td>
         <td><%= link_to 'Show', npc %></td>
         <td><%= link_to 'Edit', edit_npc_path(npc) %></td>
         <td><%= link_to 'Destroy', npc, method: :delete, data: { confirm: 'Are you sure?' } %></td>

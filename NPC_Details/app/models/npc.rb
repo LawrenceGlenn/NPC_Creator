@@ -19,12 +19,21 @@ class Npc < ApplicationRecord
     self.haircolor = randomColor(self.race.hairColor) if self.haircolor == ""
     self.name = randomName if self.name ==""
     self.alignment = randomAlignment if self.alignment ==""
+    self.characterClass = randomClass if self.characterClass ==""
   end
 
   def randomAlignment
-    align = {LG: 3, NG: 4, CG: 2, LN: 4, N: 5, CN: 3, LE: 2, NE: 3, CE: 1}
+    align = {LG: 4, NG: 5, CG: 3, LN: 5, N: 6, CN: 4, LE: 3, NE: 4, CE: 2}
     WeightedSelection.choose(align)
   end
+
+  def randomClass
+    classes = {Alchemist: 9297, Barbarian: 46312, Bard: 29889, Cleric: 46486, Druid: 1550, 
+      Fighter: 44832, Monk: 1550, Paladin: 4483, Ranger: 29889, Rogue: 69468, Sorcerer: 6947, 
+      Wizard: 9297, Adept: 63636, Aristrocrat: 6259, Commoner: 375559, Expert: 101818, Warrior: 152728}
+      WeightedSelection.choose(classes)
+  end
+
   def randomName
     self.name = NameGenerator.new.generateName(self.race.name, self.sex[0])
   end
