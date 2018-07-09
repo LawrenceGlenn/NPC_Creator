@@ -18,8 +18,13 @@ class Npc < ApplicationRecord
     self.skincolor = randomColor(self.race.skinColor) if self.skincolor == ""
     self.haircolor = randomColor(self.race.hairColor) if self.haircolor == ""
     self.name = randomName if self.name ==""
+    self.alignment = randomAlignment if self.alignment ==""
   end
 
+  def randomAlignment
+    align = {LG: 3, NG: 4, CG: 2, LN: 4, N: 5, CN: 3, LE: 2, NE: 3, CE: 1}
+    WeightedSelection.choose(align)
+  end
   def randomName
     self.name = NameGenerator.new.generateName(self.race.name, self.sex[0])
   end

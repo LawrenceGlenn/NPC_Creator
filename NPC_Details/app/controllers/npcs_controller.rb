@@ -15,7 +15,6 @@ class NpcsController < ApplicationController
   # GET /npcs/new
   def new
     @npc = Npc.new
-    @eyecolors = []
     if params[:race_id].present?
   @npc = Race.find(params[:npc][:race_id]).npcs.create(npc_params)
 end
@@ -39,7 +38,6 @@ end
 
     randomRace if params[:npc][:race_id].size == 0
     @npc = Race.find(params[:npc][:race_id]).npcs.create(npc_params)
-
     respond_to do |format|
       if @npc.save
         format.html { redirect_to @npc, notice: 'Npc was successfully created.' }
@@ -83,7 +81,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def npc_params
-      params.require(:npc).permit(:name, :nickname, :surname, :age, :sex, :haircolor, :eyecolor, :skincolor, :notes, :level, :height, :weight)
+      params.require(:npc).permit(:name, :nickname, :surname, :age, :sex, :haircolor, :eyecolor, :skincolor, :notes, :level, :height, :weight, :alignment)
     end
 
     def randomRace

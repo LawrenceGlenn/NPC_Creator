@@ -32,6 +32,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :alignment %>
+    <%= f.select :alignment, options_for_select([['Random', ''], ['Lawful Good', 'LG'], ['Neutral Good', 'NG'], ['Chaotic Good', 'CG'], ['Lawful Neutral', 'LN'], ['True Neutral', 'N'], ['Chaotic Neutral', 'CN'], ['Lawful Evil', 'LE'], ['Neutral Evil', 'NE'], ['Chaotic Evil', 'CE']]) %>
+  </div>
+
+  <div class="field">
     <%= f.label :sex %>
     <%= f.select :sex, options_for_select([['Random', ''], ['Male', 'Male'], ['Female', 'Female']]) %>
   </div>
