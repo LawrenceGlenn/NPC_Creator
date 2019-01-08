@@ -6,7 +6,8 @@ class Npc < ApplicationRecord
   before_create :set_random_values
 
   @tempMod = 0
-  @@file = YAML.load_file("#{::Rails.root.to_s}/app/models/concerns/jobs.yml").uniq
+  @@jobsFile = YAML.load_file("#{::Rails.root.to_s}/app/models/concerns/jobs.yml").uniq
+  @@secretsFile = YAML.load_file("#{::Rails.root.to_s}/app/models/concerns/secrets.yml").uniq
 
   def set_random_values
     @tempMod = Dice.roll(self.race.modNum, self.race.modDie)
@@ -22,19 +23,31 @@ class Npc < ApplicationRecord
     self.alignment = randomAlignment if self.alignment ==""
     self.rpgclass = randomClass if self.rpgclass ==""
     self.occupation = randomOccupation if self.occupation ==""
+    self.secret = randomSecret if self.secret ==""
+  end
+
+  def randomSecret
+    secrets = {}
+      @@secretsFile.each do |secretType|
+        secretType[1].each do |secret|
+          secrets["I ".concat(secret)] = 1 if secret
+        end
+      end
+    WeightedSelection.choose(secrets)
   end
 
   def randomOccupation
     jobs = {}
-    @@file.each do |job|
+    @@jobsFile.each do |job|
       baseChance = 1000000/job[1]
       jobs["head ".concat(job[0])] = baseChance
       jobs["apprentice ".concat(job[0])] = baseChance*job[2]
     end
     jobs[:begger] = 30000
-    jobs["day_laborer"] = 90781
+    jobs["day laborer"] = 90781
     jobs[:peddler] = 60000
-    jobs["farmer"] = 500000
+    jobs[:criminal] = 10000
+    jobs[:farmer] = 490000
     WeightedSelection.choose(jobs)
   end
 
@@ -81,7 +94,7 @@ class Npc < ApplicationRecord
   def randomLevel
     levels = { }
     val=1
-    (20).downto(1) do |key|
+    (20).downto(0) do |key|
       levels[key] = val
       val = val*2
     end

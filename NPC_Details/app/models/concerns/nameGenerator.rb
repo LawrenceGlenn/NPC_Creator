@@ -12,23 +12,23 @@
         (1..order).each{output << "$begin$"}
           case race.downcase
             when "human"
-              output.concat(filterHumanName(name[0]))
+              output.concat(split_by_vowel(name[0]))
             when "elf"
-              output.concat(filterNameByCharacter(name[0]))
+              output.concat(split_by_vowel(name[0]))
             when "half-elf"
-              output.concat(filterNameByCharacter(name[0]))
+              output.concat(split_by_vowel(name[0]))
             when "dwarf"
-              output.concat(filterNameByCharacter(name[0]))
+              output.concat(split_by_vowel(name[0]))
             when "halfling"
-              output.concat(filterNameByCharacter(name[0]))
+              output.concat(split_by_vowel(name[0]))
             when "gnome"
-              output.concat(filterNameByCharacter(name[0]))
+              output.concat(split_by_vowel(name[0]))
             when "half-orc"
-              output.concat(filterNameByCharacter(name[0]))
+              output.concat(split_by_vowel(name[0]))
             when "goblin"
-              output.concat(filterNameByCharacter(name[0]))
+              output.concat(split_by_vowel(name[0]))
             else
-              output.concat(filterNameByCharacter(name[0]))
+              output.concat(split_by_vowel(name[0]))
           end
         (1..order).each{output << "$end$"}
       end
@@ -44,7 +44,12 @@
 
   end
 
-  def filterHumanName(name)
+  def filterElfName(name)
+    temp_name = name.dup
+    split_by_vowel(name)
+  end
+
+  def split_by_vowel(name)
     firstVowel = false
     output = []
     str = ""
@@ -62,6 +67,10 @@
     output
   end
 
+  def filterHumanName(name)
+    split_by_vowel(name)
+  end
+
   def filterNameByCharacter(name)
     output = []
     (name).chomp.downcase.each_char do |char|
@@ -71,8 +80,11 @@
   end
 
   def check_name_for_race_sex_source(arr, race, sex, source)
-    arr[1].eql?(race.downcase) || arr[1].eql?("any") && 
-        (sex.downcase.eql?("any") || arr[2].eql?(sex.downcase)) && 
+    (arr[1].eql?(race.downcase) || arr[1].eql?("any") || 
+    (race.eql?("half-elf") && (arr[1].eql?("elf") || arr[1].eql?("human"))) || 
+    (race.eql?("half-orc") && (arr[1].eql?("orc") || arr[1].eql?("human")))) && 
+        (sex.downcase.eql?("any") || arr[2].eql?(sex.downcase) ||
+        (race.eql?("elf") && rand(6) == 0)) && 
         (source.downcase.eql?("any") || arr[3].eql?(source.downcase))
   end
 

@@ -90,6 +90,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :secret %>
+    <%= f.text_area :secret %>
+  </div>
+
+  <div class="field">
     <%= f.label :race_id %>
     <%= f.collection_select(:race_id, Race.all, :id, :name, prompt: "Random") %>
   </div>

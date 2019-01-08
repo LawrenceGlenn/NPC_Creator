@@ -36,8 +36,10 @@ end
   # POST /npcs.json
   def create
 
-    randomRace if params[:npc][:race_id].size == 0
+    (0..10).each{
+    randomRace # if params[:npc][:race_id].size == 0
     @npc = Race.find(params[:npc][:race_id]).npcs.create(npc_params)
+  }
     respond_to do |format|
       if @npc.save
         format.html { redirect_to @npc, notice: 'Npc was successfully created.' }
@@ -47,6 +49,7 @@ end
         format.json { render json: @npc.errors, status: :unprocessable_entity }
       end
     end
+  
   end
 
   # PATCH/PUT /npcs/1
@@ -82,11 +85,12 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def npc_params
       params.require(:npc).permit(:name, :nickname, :surname, :age, :sex, :haircolor, :eyecolor, :skincolor, 
-        :notes, :level, :height, :weight, :alignment, :rpgclass, :occupation)
+        :notes, :level, :height, :weight, :alignment, :rpgclass, :occupation, :secret)
     end
 
     def randomRace
-      params[:npc][:race_id]=Race.all.pluck(:id).sample
+    weightedRace = {Dwarf: 10, Elf: 5, Gnome: 10, Goblin: 1, 'Half-Elf': 60, 'Half-Orc': 5, Halfling: 5, Human: 904}
+      params[:npc][:race_id]=Race.find_by_name(WeightedSelection.choose(weightedRace)).id
     end
 
     private
