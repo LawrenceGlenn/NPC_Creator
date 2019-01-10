@@ -12,7 +12,9 @@
 
 <p>
   <strong>NPCs:</strong>
-  <%= @city.npc_ids %>
+  <% Npc.find(@city.npc_ids).each do | tempNPC| %>
+      <%= tempNPC.name %>, 
+    <% end %>
 </p>
 
 <%= link_to 'Edit', edit_city_path(@city) %> |
