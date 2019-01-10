@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190110034802) do
+ActiveRecord::Schema.define(version: 20190110081059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
-    t.integer  "pop"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "population"
   end
 
   create_table "npcs", force: :cascade do |t|
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20190110034802) do
     t.string   "rpgclass"
     t.string   "occupation"
     t.string   "secret"
+    t.integer  "city_id"
+    t.index ["city_id"], name: "index_npcs_on_city_id", using: :btree
     t.index ["race_id"], name: "index_npcs_on_race_id", using: :btree
   end
 
@@ -66,5 +68,6 @@ ActiveRecord::Schema.define(version: 20190110034802) do
     t.text     "hairColor"
   end
 
+  add_foreign_key "npcs", "cities"
   add_foreign_key "npcs", "races"
 end

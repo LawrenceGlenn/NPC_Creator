@@ -32,7 +32,7 @@
       <tr>
         <td><%= npc.race.name %></td>
         <td><%= npc.name %></td>
-        <td><%= %Q("#{npc.nickname}") if npc.nickname.size >0  %></td>
+        <td><%= %Q("#{npc.nickname}") if npc.nickname and npc.nickname.size >0  %></td>
         <td><%= npc.surname %></td>
         <td><%= npc.age %></td>
         <td><%= npc.ageCatigory %></td>

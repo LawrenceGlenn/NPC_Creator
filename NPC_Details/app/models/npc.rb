@@ -3,6 +3,7 @@ require 'weightedSelection.rb'
 
 class Npc < ApplicationRecord
   belongs_to :race
+  belongs_to :city, optional: true
   before_create :set_random_values
 
   @tempMod = 0
@@ -11,19 +12,19 @@ class Npc < ApplicationRecord
 
   def set_random_values
     @tempMod = Dice.roll(self.race.modNum, self.race.modDie)
-    self.sex = randomSex if self.sex == ""
+    self.sex = randomSex if self.sex == nil or self.sex == ""
     self.level = randomLevel if self.level == nil
     self.height = randomHeight if self.height == nil
     self.weight = randomWeight if self.weight == nil
     self.age = randomAge if self.age == nil
-    self.eyecolor = randomColor(self.race.eyeColor) if self.eyecolor == ""
-    self.skincolor = randomColor(self.race.skinColor) if self.skincolor == ""
-    self.haircolor = randomColor(self.race.hairColor) if self.haircolor == ""
-    self.name = randomName if self.name ==""
-    self.alignment = randomAlignment if self.alignment ==""
-    self.rpgclass = randomClass if self.rpgclass ==""
-    self.occupation = randomOccupation if self.occupation ==""
-    self.secret = randomSecret if self.secret ==""
+    self.eyecolor = randomColor(self.race.eyeColor) if self.eyecolor == nil or self.eyecolor == ""
+    self.skincolor = randomColor(self.race.skinColor) if self.skincolor == nil or self.skincolor == ""
+    self.haircolor = randomColor(self.race.hairColor) if self.haircolor == nil or self.haircolor == ""
+    self.name = randomName if self.name == nil or self.name ==""
+    self.alignment = randomAlignment if self.alignment == nil or  self.alignment ==""
+    self.rpgclass = randomClass if self.rpgclass == nil or self.rpgclass ==""
+    self.occupation = randomOccupation if self.occupation == nil or self.occupation ==""
+    self.secret = randomSecret if self.secret == nil or self.secret ==""
   end
 
   def randomSecret

@@ -1,3 +1,6 @@
+
+require 'weightedSelection.rb'
+
 class CitiesController < ApplicationController
   before_action :set_city, only: [:show, :edit, :update, :destroy]
 
@@ -24,10 +27,18 @@ class CitiesController < ApplicationController
   # POST /cities
   # POST /cities.json
   def create
-    @city = City.new(city_params)
 
+    @city = City.new(city_params)
     respond_to do |format|
       if @city.save
+
+
+        (1..params[:city][:population].to_i).each do
+          @npc = Race.find(randomRace).npcs.create()
+          @npc.city_id = @city.id
+          @npc.save
+          #Npc.last.update(city_id: City.last.id)
+        end
         format.html { redirect_to @city, notice: 'City was successfully created.' }
         format.json { render :show, status: :created, location: @city }
       else
@@ -69,6 +80,15 @@ class CitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def city_params
-      params.require(:city).permit(:name)
+      params.require(:city).permit(:name, :population)
     end
+
+
+
+    def randomRace
+    weightedRace = {Dwarf: 10, Elf: 5, Gnome: 10, Goblin: 1, 'Half-Elf': 60, 'Half-Orc': 5, Halfling: 5, Human: 904}
+      Race.find_by_name(WeightedSelection.choose(weightedRace)).id
+    end
+
+
 end

@@ -36,10 +36,9 @@ end
   # POST /npcs.json
   def create
 
-    (0..10).each{
-    randomRace # if params[:npc][:race_id].size == 0
+    randomRace if params[:npc][:race_id].size == 0
     @npc = Race.find(params[:npc][:race_id]).npcs.create(npc_params)
-  }
+  
     respond_to do |format|
       if @npc.save
         format.html { redirect_to @npc, notice: 'Npc was successfully created.' }
