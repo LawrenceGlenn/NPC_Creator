@@ -115,9 +115,11 @@ class CitiesController < ApplicationController
         totalNumChildren = rand(5)
         numChildren = 0
         childIndex = index
-       # puts parent.inspect
         while numChildren<totalNumChildren && childIndex<npcList.size do
+          if parent.age > npcList[childIndex].age+npcList[childIndex].race.adultAge
+            parent.children << npcList[childIndex]
             numChildren = numChildren+1
+          end
           childIndex = childIndex +1
         end
       end
