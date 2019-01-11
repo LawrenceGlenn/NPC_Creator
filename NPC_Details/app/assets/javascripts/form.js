@@ -16,8 +16,6 @@ $(document).on('turbolinks:load', function() {
     $("." + elm.id + "Label").html(formattedChance);
     });
 
-    //var humSlide = $("#humanSlider");
-    //humSlide.value = humSlide +1000 -totChance;
   });
 
 });

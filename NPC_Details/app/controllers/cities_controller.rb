@@ -33,7 +33,7 @@ class CitiesController < ApplicationController
       if @city.save
 
 
-        (1..params[:city][:population].to_i).each do
+        (1..city_params[:population].to_i).each do
           @npc = Race.find(randomRace).npcs.create()
           @npc.city_id = @city.id
           @npc.save
@@ -86,14 +86,14 @@ class CitiesController < ApplicationController
 
 
     def randomRace
-    weightedRace = {Dwarf: params[:city][:dwarfChance].to_i, 
-      Elf: params[:city][:elfChance].to_i, 
-      Gnome: params[:city][:gnomeChance].to_i, 
-      Goblin: params[:city][:goblinChance].to_i, 
-      'Half-Elf': params[:city][:halfElfChance].to_i, 
-      'Half-Orc': params[:city][:halfOrcChance].to_i, 
-      Halfling: params[:city][:halflingChance].to_i, 
-      Human: params[:city][:humanChance].to_i}
+    weightedRace = {Dwarf: city_params[:dwarfChance].to_i, 
+      Elf: city_params[:elfChance].to_i, 
+      Gnome: city_params[:gnomeChance].to_i, 
+      Goblin: city_params[:goblinChance].to_i, 
+      'Half-Elf': city_params[:halfElfChance].to_i, 
+      'Half-Orc': city_params[:halfOrcChance].to_i, 
+      Halfling: city_params[:halflingChance].to_i, 
+      Human: city_params[:humanChance].to_i}
       Race.find_by_name(WeightedSelection.choose(weightedRace)).id
     end
 
