@@ -34,10 +34,8 @@ class CitiesController < ApplicationController
 
 
         (1..city_params[:population].to_i).each do
-          @npc = Race.find(randomRace).npcs.create()
-          @npc.city_id = @city.id
-          @npc.save
-          #Npc.last.update(city_id: City.last.id)
+          createNPC
+          assignFamilyRelationships
         end
         format.html { redirect_to @city, notice: 'City was successfully created.' }
         format.json { render :show, status: :created, location: @city }
@@ -95,6 +93,24 @@ class CitiesController < ApplicationController
       Halfling: city_params[:halflingChance].to_i, 
       Human: city_params[:humanChance].to_i}
       Race.find_by_name(WeightedSelection.choose(weightedRace)).id
+    end
+
+    def createNPC
+      npc = Race.find(randomRace).npcs.create()
+      npc.city_id = @city.id
+      npc.save
+    end
+
+    def assignFamilyRelationships
+      npcList = Npc.order(age: :desc).find(@city.npc_ids)
+      npcList.each_with_index do |parent, index|
+        totalNumChildren = rand(5)
+        numChildren = 0;
+        childIndex = index;
+        while numChildren<totalNumChildren && childIndex<npcList.size do
+          
+        end
+      end
     end
 
 
