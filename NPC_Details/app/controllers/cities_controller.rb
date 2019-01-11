@@ -35,8 +35,8 @@ class CitiesController < ApplicationController
 
         (1..city_params[:population].to_i).each do
           createNPC
-          assignFamilyRelationships
         end
+          assignFamilyRelationships
         format.html { redirect_to @city, notice: 'City was successfully created.' }
         format.json { render :show, status: :created, location: @city }
       else
@@ -78,7 +78,15 @@ class CitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def city_params
-      params.require(:city).permit(:name, :population, :dwarfChance)
+      params.require(:city).permit(:name, :population, 
+        :dwarfChance, 
+        :elfChance, 
+        :gnomeChance, 
+        :goblinChance, 
+        :halfElfChance, 
+        :halfOrcChance, 
+        :halflingChance, 
+        :humanChance)
     end
 
 
@@ -105,10 +113,12 @@ class CitiesController < ApplicationController
       npcList = Npc.order(age: :desc).find(@city.npc_ids)
       npcList.each_with_index do |parent, index|
         totalNumChildren = rand(5)
-        numChildren = 0;
-        childIndex = index;
+        numChildren = 0
+        childIndex = index
+       # puts parent.inspect
         while numChildren<totalNumChildren && childIndex<npcList.size do
-          
+            numChildren = numChildren+1
+          childIndex = childIndex +1
         end
       end
     end
