@@ -80,13 +80,20 @@ class CitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def city_params
-      params.require(:city).permit(:name, :population)
+      params.require(:city).permit(:name, :population, :dwarfChance)
     end
 
 
 
     def randomRace
-    weightedRace = {Dwarf: 10, Elf: 5, Gnome: 10, Goblin: 1, 'Half-Elf': 60, 'Half-Orc': 5, Halfling: 5, Human: 904}
+    weightedRace = {Dwarf: params[:city][:dwarfChance].to_i, 
+      Elf: params[:city][:elfChance].to_i, 
+      Gnome: params[:city][:gnomeChance].to_i, 
+      Goblin: params[:city][:goblinChance].to_i, 
+      'Half-Elf': params[:city][:halfElfChance].to_i, 
+      'Half-Orc': params[:city][:halfOrcChance].to_i, 
+      Halfling: params[:city][:halflingChance].to_i, 
+      Human: params[:city][:humanChance].to_i}
       Race.find_by_name(WeightedSelection.choose(weightedRace)).id
     end
 

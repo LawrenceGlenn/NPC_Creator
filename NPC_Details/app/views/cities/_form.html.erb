@@ -21,6 +21,54 @@
     <%= f.number_field :population %>
   </div>
 
+  <div class="field">
+    <%= f.label :dwarfChance %>
+    <label class="dwarfSliderLabel"> 1% </label>
+    <%= f.range_field :dwarfChance, min: 0, max: 1000, step: 1, value: 10, class:"slide", id: "dwarfSlider"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :elfChance %>
+    <label class="elfSliderLabel"> 0.5% </label>
+    <%= f.range_field :elfChance, min: 0, max: 1000, step: 1, value: 5, class:"slide", id: "elfSlider"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :gnomeChance %>
+    <label class="gnomeSliderLabel"> 1% </label>
+    <%= f.range_field :gnomeChance, min: 0, max: 1000, step: 1, value: 10, class:"slide", id: "gnomeSlider"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :goblinChance %>
+    <label class="goblinSliderLabel"> 0.1% </label>
+    <%= f.range_field :goblinChance, min: 0, max: 1000, step: 1, value: 1, class:"slide", id: "goblinSlider"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :halfElfChance %>
+    <label class="halfElfSliderLabel"> 6% </label>
+    <%= f.range_field :halfElfChance, min: 0, max: 1000, step: 1, value: 60, class:"slide", id: "halfElfSlider"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :halfOrcChance %>
+    <label class="halfOrcSliderLabel"> 0.5% </label>
+    <%= f.range_field :halfOrcChance, min: 0, max: 1000, step: 1, value: 5, class:"slide", id: "halfOrcSlider"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :halflingChance %>
+    <label class="halflingSliderLabel"> 0.5% </label>
+    <%= f.range_field :halflingChance, min: 0, max: 1000, step: 1, value: 5, class:"slide", id: "halflingSlider"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :humanChance %>
+    <label class="humanSliderLabel"> 90.4% </label>
+    <%= f.range_field :humanChance, min: 0, max: 1000, step: 1, value: 904, class:"slide", id: "humanSlider"%>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
