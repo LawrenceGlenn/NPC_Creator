@@ -114,15 +114,24 @@ class CitiesController < ApplicationController
       npcList.each_with_index do |parent, index|
         totalNumChildren = rand(5)
         numChildren = 0
-        childIndex = index
-        while numChildren<totalNumChildren && childIndex<npcList.size do
-          if parent.age > npcList[childIndex].age+npcList[childIndex].race.adultAge
-            parent.children << npcList[childIndex]
-            numChildren = numChildren+1
+        childIndex = index+1<npcList.size ? index+1 : index
+        if parent.sex == "Female"
+          while numChildren<totalNumChildren && childIndex<npcList.size do
+            if validChild?(parent,npcList[childIndex],npcList[childIndex-1])
+              parent.children << npcList[childIndex]
+              numChildren = numChildren+1
+            end
+            childIndex = childIndex +1
           end
-          childIndex = childIndex +1
         end
       end
+    end
+
+    def validChild?(parent, child, previousChild)
+      adopted = rand(10)
+      parent.age - child.age + child.race.adultAge > 2*parent.race.adultAge and 
+      parent.race_id == child.race_id or adopted == 0 and
+      previousChild.age > child.age or adopted == 0
     end
 
 
