@@ -130,8 +130,8 @@ class CitiesController < ApplicationController
     def validChild?(parent, child, previousChild)
       adopted = rand(10)
       parent.age - child.age + child.race.adultAge > 2*parent.race.adultAge and 
-      parent.race_id == child.race_id or adopted == 0 and
-      previousChild.age > child.age or adopted == 0
+      (parent.race_id == child.race_id and
+      previousChild.age > child.age) or adopted == 0
     end
 
 
