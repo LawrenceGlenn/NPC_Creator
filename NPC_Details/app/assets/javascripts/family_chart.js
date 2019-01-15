@@ -18,6 +18,16 @@ $(document).on('turbolinks:load', function() {
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
+svg.append("svg:defs").append("svg:marker")
+    .attr("id", "arrow")
+    .attr("viewBox", "0 -5 10 10")
+    .attr('refX', -20)//so that it comes towards the center.
+    .attr("markerWidth", 5)
+    .attr("markerHeight", 5)
+    .attr("orient", "auto")
+  .append("svg:path")
+    .attr("d", "M0,-5L10,0L0,5");
+
   //set up the simulation 
   //nodes only for now 
   var simulation = d3.forceSimulation()
@@ -51,6 +61,7 @@ $(document).on('turbolinks:load', function() {
     .enter().append("line")
       .attr("stroke-width", 2)
       .attr("stroke", "gray")
+      .attr('marker-start', function(d) { return "url(#arrow)"})//attach the arrow from defs
       .attr("opacity", 0.6);      
 
 
@@ -70,7 +81,8 @@ $(document).on('turbolinks:load', function() {
       .attr("x1", function(d) { return d.source.x; })
       .attr("y1", function(d) { return d.source.y; })
       .attr("x2", function(d) { return d.target.x; })
-      .attr("y2", function(d) { return d.target.y; });
+      .attr("y2", function(d) { return d.target.y; })
+      .attr( "d", function(d) {"M" + d.source.x + "," + d.source.y + ", " + d.target.x + "," + d.target.y});
 
   }                    
 
