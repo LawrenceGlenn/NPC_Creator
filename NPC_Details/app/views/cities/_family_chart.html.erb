@@ -1,3 +1,6 @@
-<%= content_tag :div, class: "family_info", data: {familyList: Npc.find(@city.npc_ids)} do %>
+<% npcs = Npc.find(@city.npc_ids) %>
+<% families = [] %>
+<% npcs.each { |n| families << {parent:n, children: n.children } } %>
+<%= content_tag :div, class: "family_info", data: {families: families} do %>
 <% end %>
 <svg class ="familyChart"></svg>

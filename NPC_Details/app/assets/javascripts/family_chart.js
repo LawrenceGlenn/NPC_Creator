@@ -1,10 +1,9 @@
-$('document').ready(function() {
-  var familyList = $('.family_info').data('familyList');
-
-  var formattedLinks = formatLinks;
-
+$(document).on('turbolinks:load', function() {
+  var familyList = $('.family_info').data('families');
+  var formattedLinks = formatLinks();
+  var formattedNodes = formatNodes();
   //set dimensions for the canvis the graph will be on
-  var svgWidth = 1000, svgHeight = 1000;
+  var svgWidth = 600, svgHeight = 600;
   var margin = { top: 20, right: 20, bottom: 20, left: 20 };
   var width = svgWidth - margin.left - margin.right;
   var height = svgHeight - margin.top - margin.bottom;
@@ -18,18 +17,77 @@ $('document').ready(function() {
   var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  var force = d3.layout.force()
-    .size([width,height])
-    .nodes(familyList)
-    .links([{},{}]);
+
+  //set up the simulation 
+  //nodes only for now 
+  var simulation = d3.forceSimulation()
+    .nodes(formattedNodes);
+
+  simulation
+    .force("charge_force", d3.forceManyBody())
+    .force("center_force", d3.forceCenter(width / 2, height / 2));
+
+    var node = svg.append("g")
+      .attr("class", "nodes")
+      .selectAll("circle")
+      .data(formattedNodes)
+      .enter()
+      .append("circle")
+        .attr("r", 5)
+        .attr("fill", "red");
+
+  //Create the link force 
+  //We need the id accessor to use named sources and targets 
+  var link_force =  d3.forceLink(formattedLinks)
+    .id(function(d) { return d.id; });
+                        
+  simulation.force("links",link_force);   
+
+  //draw lines for the links 
+  var link = svg.append("g")
+    .attr("class", "links")
+    .selectAll("line")
+    .data(formattedLinks)
+    .enter().append("line")
+      .attr("stroke-width", 2)
+      .attr("stroke", "gray")
+      .attr("opacity", 0.6);      
 
 
+  simulation.on("tick", tickActions );
+  
+  // The complete tickActions function    
+  function tickActions() {
+    //update circle positions each tick of the simulation 
+    node
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; });
+        
+    //update link positions 
+    //simply tells one end of the line to follow one node around
+    //and the other end of the line to follow the other node around
+    link
+      .attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
 
+  }                    
 
   function formatLinks() {
     var output = [];
-    familyList.forEach( function(npc) {
-      output.push({source: npc, target: npc.children});
+    familyList.forEach ( function(family) {
+      family['children'].forEach ( function(child) {
+        output.push({source: family['parent'].id, target: child.id});
+      });
+    });
+    return output;
+  }
+
+  function formatNodes() {
+    var output = [];
+    familyList.forEach ( function(family) {
+      output.push({id: family['parent'].id});
     });
     return output;
   }
