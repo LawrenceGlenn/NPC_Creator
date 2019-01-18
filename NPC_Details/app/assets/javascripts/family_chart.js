@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', function() {
   var formattedLinks = formatLinks();
   var formattedNodes = formatNodes();
   //set dimensions for the canvis the graph will be on
-  var svgWidth = 600, svgHeight = 600;
+  var svgWidth = 1000, svgHeight = 1000;
   var margin = { top: 20, right: 20, bottom: 20, left: 20 };
   var width = svgWidth - margin.left - margin.right;
   var height = svgHeight - margin.top - margin.bottom;

@@ -130,9 +130,9 @@ class CitiesController < ApplicationController
     def validChild?(parent, child, previousChild)
       adopted = rand(10)
       NpcDescendant.where(child_id: child.id).empty? and
-      parent.age - child.age + child.race.adultAge > 2*parent.race.adultAge and 
+      (parent.age - child.age + child.race.adultAge > 2*parent.race.adultAge and 
       (parent.race_id == child.race_id and
-      previousChild.age > child.age) or adopted == 0
+      previousChild.age > child.age) or adopted == 0)
     end
 
 
