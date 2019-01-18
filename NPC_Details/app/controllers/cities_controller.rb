@@ -117,7 +117,8 @@ class CitiesController < ApplicationController
         childIndex = index+1<npcList.size ? index+1 : index
         if parent.sex == "Female"
           while numChildren<totalNumChildren && childIndex<npcList.size do
-            if validChild?(parent,npcList[childIndex],npcList[childIndex-1])
+            adopted = rand(10) == 0 ? true : false
+            if validChild?(parent,npcList[childIndex],npcList[childIndex-1], adopted)
               parent.children << npcList[childIndex]
               numChildren = numChildren+1
             end
@@ -127,13 +128,26 @@ class CitiesController < ApplicationController
       end
     end
 
-    def validChild?(parent, child, previousChild)
-      adopted = rand(10)
-      NpcDescendant.where(child_id: child.id).empty? and
-      (parent.age - child.age + child.race.adultAge > 2*parent.race.adultAge and 
-      (parent.race_id == child.race_id and
-      previousChild.age > child.age) or adopted == 0)
+    def validChild?(parent, child, previousChild, adopted)
+      parentOldEnough?(parent,child) and 
+      geneticallyPossible?(parent, child, adopted) and
+      noOnesChild?(child) and
+      ! tooCloseToPreviousChildsAge?(child,previousChild,adopted)
     end
 
+    def parentOldEnough?(parent, child)
+      parent.age - child.age + child.race.adultAge >= 2*parent.race.adultAge
+    end
 
+    def geneticallyPossible?(parent, child, adopted)
+      parent.race_id == child.race_id or adopted
+    end
+
+    def noOnesChild?(child)
+      NpcDescendant.where(child_id: child.id).empty?
+    end
+
+    def tooCloseToPreviousChildsAge?(child, previousChild, adopted)
+      previousChild.age == child.age and !adopted
+    end
 end
