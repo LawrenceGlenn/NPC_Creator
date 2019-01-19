@@ -112,12 +112,12 @@ class CitiesController < ApplicationController
     def assignFamilyRelationships
       npcList = Npc.order(age: :desc).find(@city.npc_ids)
       npcList.each_with_index do |parent, index|
-        totalNumChildren = rand(5)
+        totalNumChildren = rand(6)
         numChildren = 0
         childIndex = index+1<npcList.size ? index+1 : index
         if parent.sex == "Female"
           while numChildren<totalNumChildren && childIndex<npcList.size do
-            adopted = rand(10) == 0 ? true : false
+            adopted = rand(50) == 0 ? true : false
             if validChild?(parent,npcList[childIndex],npcList[childIndex-1], adopted)
               parent.children << npcList[childIndex]
               numChildren = numChildren+1
@@ -149,5 +149,9 @@ class CitiesController < ApplicationController
 
     def tooCloseToPreviousChildsAge?(child, previousChild, adopted)
       previousChild.age == child.age and !adopted
+    end
+
+    def validSpouse?(mother, father)
+      mother.sex == "Female" and father.sex == "Male"
     end
 end

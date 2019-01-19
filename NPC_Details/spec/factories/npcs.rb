@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   factory :npc do
 
-    factory :npc_joe do
+    factory :npc_doe do
       name  "Joe"
       age 40
       sex "Female"
