@@ -7,6 +7,7 @@ $(document).on('turbolinks:load', function() {
   var margin = { top: 20, right: 20, bottom: 20, left: 20 };
   var width = svgWidth - margin.left - margin.right;
   var height = svgHeight - margin.top - margin.bottom;
+  const childColor = "orange";
 
   var svg = d3.select("svg.familyChart")
     .attr("width", svgWidth)
@@ -34,15 +35,18 @@ svg.append("svg:defs").append("svg:marker")
     .nodes(formattedNodes);
 
   simulation
-    .force("charge_force", d3.forceManyBody())
+    .force("link", d3.forceLink().id(function(d) {return d.id;}))
+    .force("charge_force", d3.forceManyBody().strength(-80).distanceMax(300).distanceMin(0))
     .force("center_force", d3.forceCenter(width / 2, height / 2));
 
     var node = svg.append("g")
       .attr("class", "nodes")
       .selectAll("circle")
       .data(formattedNodes)
-      .enter()
-      .append("circle")
+      .enter().append("g");
+      
+
+    var circles = node.append("circle")
         .attr("r", 5)
         .attr("fill", "red");
 
@@ -60,10 +64,23 @@ svg.append("svg:defs").append("svg:marker")
     .data(formattedLinks)
     .enter().append("line")
       .attr("stroke-width", 2)
-      .attr("stroke", "gray")
+      .attr("stroke", childColor)
       .attr('marker-start', function(d) { return "url(#arrow)"})//attach the arrow from defs
       .attr("opacity", 0.6);      
 
+
+  var labels = node.append("text")
+      .attr('x', 6)
+      .attr('y', 3)
+      
+
+      labels.append("tspan")
+        .text(function(d) {return d.name + " " + d.sex;})
+        .attr("dy", "0em");
+      labels.append("tspan")
+        .text(function(d) {return d.race + " age: " + d.age;})
+        .attr("dy", "1em")
+        .attr("x", "0");
 
   simulation.on("tick", tickActions );
   
@@ -71,8 +88,9 @@ svg.append("svg:defs").append("svg:marker")
   function tickActions() {
     //update circle positions each tick of the simulation 
     node
-      .attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; });
+      .attr("transform", function(d) {
+        return "translate(" + d.x + "," + d.y + ")";
+      });
         
     //update link positions 
     //simply tells one end of the line to follow one node around
@@ -99,7 +117,8 @@ svg.append("svg:defs").append("svg:marker")
   function formatNodes() {
     var output = [];
     familyList.forEach ( function(family) {
-      output.push({id: family['parent'].id});
+      var parent = family['parent'] 
+      output.push({id: parent.id, name: parent.name, sex: parent.sex, age: parent.age, race: parent.race_id});
     });
     return output;
   }
