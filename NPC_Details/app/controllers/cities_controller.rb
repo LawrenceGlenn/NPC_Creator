@@ -151,7 +151,16 @@ class CitiesController < ApplicationController
       previousChild.age == child.age and !adopted
     end
 
-    def validSpouse?(mother, father)
-      mother.sex == "Female" and father.sex == "Male"
+    def validSpouse?(spouse1, spouse2)
+      alterative = rand(10) == 0 ? true : false
+      compatibleSpouse?(spouse1,spouse2, alterative) and notMarried?(spouse1, spouse2)
+    end
+
+    def compatibleSpouse?(spouse1, spouse2, alterative)
+      spouse1.sex != spouse2.sex or alterative
+    end
+
+    def notMarried?(spouse1, spouse2)
+      
     end
 end

@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20190111202158) do
     t.integer  "humanChance"
   end
 
-  create_table "npc_descendants", force: :cascade do |t|
+  create_table "npc_relationships", force: :cascade do |t|
     t.integer  "parent_id"
     t.integer  "child_id"
     t.datetime "created_at", null: false

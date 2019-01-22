@@ -4,8 +4,8 @@ require 'weightedSelection.rb'
 class Npc < ApplicationRecord
   belongs_to :race
   belongs_to :city, optional: true
-  has_many :npc_descendants, :foreign_key => :parent_id
-  has_many :children, :through => :npc_descendants, :source => :child
+  has_many :npc_relationships, :foreign_key => :parent_id
+  has_many :children, :through => :npc_relationships, :source => :child
   before_create :set_random_values
 
   @tempMod = 0

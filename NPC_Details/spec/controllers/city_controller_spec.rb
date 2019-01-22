@@ -199,7 +199,7 @@ require 'rails_helper'
         end
       end
       context "one male one male" do
-       it "returns true" do
+       it "returns false" do
         human = create(:race_human)
         mother = create(:npc_doe, race: human, sex:"Male")
         father = create(:npc_doe, race: human, sex:"Male")
@@ -207,10 +207,18 @@ require 'rails_helper'
         end
       end
       context "one female one female" do
-       it "returns true" do
+       it "returns false" do
         human = create(:race_human)
         mother = create(:npc_doe, race: human, sex:"Female")
         father = create(:npc_doe, race: human, sex:"Female")
+        expect(controller.send(:validSpouse?, mother, father)).to  eq(false)
+        end
+      end
+      context "one male one female and already someones spouse" do
+       it "returns false" do
+        human = create(:race_human)
+        mother = create(:npc_doe, race: human, sex:"Female")
+        father = create(:npc_doe, race: human, sex:"Male")
         expect(controller.send(:validSpouse?, mother, father)).to  eq(false)
         end
       end
