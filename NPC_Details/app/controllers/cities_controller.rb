@@ -144,7 +144,7 @@ class CitiesController < ApplicationController
     end
 
     def noOnesChild?(child)
-      NpcDescendant.where(child_id: child.id).empty?
+      NpcRelationship.where(child_id: child.id).empty?
     end
 
     def tooCloseToPreviousChildsAge?(child, previousChild, adopted)
