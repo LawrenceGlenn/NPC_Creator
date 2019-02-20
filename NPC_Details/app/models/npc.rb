@@ -6,6 +6,7 @@ class Npc < ApplicationRecord
   belongs_to :city, optional: true
   has_many :npc_relationships, :foreign_key => :parent_id
   has_many :children, :through => :npc_relationships, :source => :child
+  has_one :spouse, :through => :npc_relationships, :source => :spouse
   before_create :set_random_values
 
   @tempMod = 0

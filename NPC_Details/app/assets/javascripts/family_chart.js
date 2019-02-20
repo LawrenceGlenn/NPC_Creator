@@ -36,7 +36,7 @@ svg.append("svg:defs").append("svg:marker")
 
   simulation
     .force("link", d3.forceLink().id(function(d) {return d.id;}))
-    .force("charge_force", d3.forceManyBody().strength(-80).distanceMax(300).distanceMin(0))
+    .force("charge_force", d3.forceManyBody().strength(-20).distanceMax(300).distanceMin(0))
     .force("center_force", d3.forceCenter(width / 2, height / 2));
 
     var node = svg.append("g")
